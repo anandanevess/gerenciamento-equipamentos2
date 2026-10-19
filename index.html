@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gerenciamento de Equipamentos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="main-header">
+    <h1>🖥️ Gestão de Equipamentos de TI</h1>
+    <p>Controle de inventário, disponibilidade e empréstimos</p>
+  </header>
+
+  <main class="container">
+    
+    <!-- Painel de Indicadores -->
+    <section class="dashboard">
+      <div class="card card-total">
+        <h3>Total</h3>
+        <span id="total-qtd">0</span>
+      </div>
+      <div class="card card-disponivel">
+        <h3>Disponíveis</h3>
+        <span id="disponivel-qtd">0</span>
+      </div>
+      <div class="card card-emprestado">
+        <h3>Emprestados</h3>
+        <span id="emprestado-qtd">0</span>
+      </div>
+    </section>
+
+    <!-- Formulário de Cadastro/Edição -->
+    <section class="card-section">
+      <h2 id="form-title">Cadastrar Novo Equipamento</h2>
+      <form id="form-equipamento">
+        <input type="hidden" id="equipamento-id">
+        
+        <div class="form-group">
+          <label for="nome">Nome do Equipamento *</label>
+          <input type="text" id="nome" placeholder="Ex: Notebook Dell XPS 15" required>
+        </div>
+
+        <div class="form-group">
+          <label for="patrimonio">Nº de Patrimônio / Série *</label>
+          <input type="text" id="patrimonio" placeholder="Ex: PAT-2026-001" required>
+        </div>
+
+        <div class="form-group">
+          <label for="categoria">Categoria *</label>
+          <select id="categoria" required>
+            <option value="">Selecione...</option>
+            <option value="Notebook">Notebook</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Periférico">Periférico</option>
+            <option value="Servidor/Rede">Servidor / Rede</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="responsavel">Responsável / Setor</label>
+          <input type="text" id="responsavel" placeholder="Ex: João - TI (opcional)">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="btn-salvar" class="btn btn-success">Salvar Equipamento</button>
+          <button type="button" id="btn-cancelar" class="btn btn-secondary hidden">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Controles de Busca e Filtro -->
+    <section class="card-section">
+      <h2>Consulta e Filtros</h2>
+      <div class="filters">
+        <input type="text" id="input-busca" placeholder="🔍 Pesquisar por nome ou patrimônio...">
+        
+        <div class="filter-buttons">
+          <button class="btn btn-filter active" data-filter="todos">Todos</button>
+          <button class="btn btn-filter" data-filter="Disponível">Disponíveis</button>
+          <button class="btn btn-filter" data-filter="Emprestado">Emprestados</button>
+        </div>
+      </div>
+
+      <!-- Tabela de Registros -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Patrimônio</th>
+              <th>Equipamento</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th>Responsável</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-equipamentos">
+            <!-- Linhas geradas via JavaScript -->
+          </tbody>
+        </table>
+        <p id="msg-vazio" class="msg-vazio hidden">Nenhum equipamento encontrado.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
